@@ -1,8 +1,10 @@
 package api
 
 import (
-	_ "github.com/swaggo/swag/testdata/conflict_name/model"
 	"net/http"
+
+	_ "github.com/swaggo/swag/testdata/conflict_name/model"
+	_ "github.com/swaggo/swag/testdata/conflict_name/model3"
 )
 
 // @Tags Health
@@ -10,7 +12,7 @@ import (
 // @ID health
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} model.ErrorsResponse
+// @Success 200 {object} model3.Response{data=model.ErrorsResponse}
 // @Router /health [get]
 func Get1(w http.ResponseWriter, r *http.Request) {
 

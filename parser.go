@@ -682,6 +682,22 @@ func (parser *Parser) ParseRouterAPIInfo(fileName string, astFile *ast.File) err
 					}
 					parser.debug.Printf("warning: %s\n", err)
 				}
+				op := &operation.Operation
+				for code, response := range op.Responses.StatusCodeResponses {
+					// 只对 @success 200 进行处理
+					if code == 200 && len(response.Schema.AllOf) > 0 {
+						complete := response.Schema.AllOf[0].Ref.Ref.String()
+						index := strings.LastIndex(complete, "/")
+						name := complete[index+1:]
+
+						if schema, ok := parser.swagger.Definitions[name]; ok {
+							name = parser.renameSchema(name, routeProperties.Path)
+							response.Schema.AllOf[0] = *RefSchema(strings.TrimPrefix(name, "#/definitions/"))
+							parser.swagger.Definitions[name] = schema
+						}
+					}
+
+				}
 
 				setRouteMethodOp(&pathItem, routeProperties.HTTPMethod, &operation.Operation)
 
@@ -812,7 +828,6 @@ func (parser *Parser) renameSchema(name, pkgPath string) string {
 	parts := strings.Split(name, ".")
 	name = fullTypeName(pkgPath, parts[len(parts)-1])
 	name = strings.ReplaceAll(name, "/", "_")
-
 	return name
 }
 

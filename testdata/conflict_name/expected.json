@@ -24,7 +24,19 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github.com_swaggo_swag_testdata_conflict_name_model.ErrorsResponse"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/_health.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/github.com_swaggo_swag_testdata_conflict_name_model.ErrorsResponse"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
@@ -47,7 +59,19 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github.com_swaggo_swag_testdata_conflict_name_model2.ErrorsResponse"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/_health2.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/github.com_swaggo_swag_testdata_conflict_name_model2.ErrorsResponse"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
@@ -55,18 +79,59 @@
         }
     },
     "definitions": {
+        "_health.Response": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "data": {},
+                "msg": {
+                    "type": "string"
+                },
+                "trace_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "_health2.Response": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "data": {},
+                "msg": {
+                    "type": "string"
+                },
+                "trace_id": {
+                    "type": "string"
+                }
+            }
+        },
         "github.com_swaggo_swag_testdata_conflict_name_model.ErrorsResponse": {
             "type": "object",
             "properties": {
                 "newTime": {
-                    "$ref": "#/definitions/model.MyPayload"
+                    "$ref": "#/definitions/github.com_swaggo_swag_testdata_conflict_name_model.MyPayload"
+                }
+            }
+        },
+        "github.com_swaggo_swag_testdata_conflict_name_model.MyPayload": {
+            "type": "object",
+            "properties": {
+                "my": {
+                    "$ref": "#/definitions/github.com_swaggo_swag_testdata_conflict_name_model.MyStruct"
+                },
+                "name1": {
+                    "type": "string"
                 }
             }
         },
         "github.com_swaggo_swag_testdata_conflict_name_model.MyStruct": {
             "type": "object",
             "properties": {
-                "name": {
+                "child_name": {
                     "type": "string"
                 }
             }
@@ -75,36 +140,40 @@
             "type": "object",
             "properties": {
                 "newTime": {
-                    "$ref": "#/definitions/model.MyPayload2"
+                    "$ref": "#/definitions/github.com_swaggo_swag_testdata_conflict_name_model2.MyPayload"
+                }
+            }
+        },
+        "github.com_swaggo_swag_testdata_conflict_name_model2.MyPayload": {
+            "type": "object",
+            "properties": {
+                "my": {
+                    "$ref": "#/definitions/github.com_swaggo_swag_testdata_conflict_name_model2.MyStruct"
+                },
+                "name2": {
+                    "type": "string"
                 }
             }
         },
         "github.com_swaggo_swag_testdata_conflict_name_model2.MyStruct": {
             "type": "object",
             "properties": {
-                "name": {
+                "child_name": {
                     "type": "string"
                 }
             }
         },
-        "model.MyPayload": {
+        "model3.Response": {
             "type": "object",
             "properties": {
-                "my": {
-                    "$ref": "#/definitions/github.com_swaggo_swag_testdata_conflict_name_model.MyStruct"
+                "code": {
+                    "type": "integer"
                 },
-                "name": {
+                "data": {},
+                "msg": {
                     "type": "string"
-                }
-            }
-        },
-        "model.MyPayload2": {
-            "type": "object",
-            "properties": {
-                "my": {
-                    "$ref": "#/definitions/github.com_swaggo_swag_testdata_conflict_name_model2.MyStruct"
                 },
-                "name": {
+                "trace_id": {
                     "type": "string"
                 }
             }
