@@ -13,9 +13,9 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/To-echo/swag"
 	"github.com/ghodss/yaml"
 	"github.com/go-openapi/spec"
-	"github.com/swaggo/swag"
 )
 
 // Gen presents a generate tool for swag.

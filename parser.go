@@ -689,7 +689,7 @@ func (parser *Parser) ParseRouterAPIInfo(fileName string, astFile *ast.File) err
 						complete := response.Schema.AllOf[0].Ref.Ref.String()
 						index := strings.LastIndex(complete, "/")
 						name := complete[index+1:]
-
+						parser.debug.Printf("Generating unique struct %s url %s", complete, routeProperties.Path)
 						if schema, ok := parser.swagger.Definitions[name]; ok {
 							name = parser.renameSchema(name, routeProperties.Path)
 							response.Schema.AllOf[0] = *RefSchema(strings.TrimPrefix(name, "#/definitions/"))
