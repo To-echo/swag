@@ -3,8 +3,8 @@ package api
 import (
 	"net/http"
 
-	_ "github.com/swaggo/swag/testdata/conflict_name/model"
-	_ "github.com/swaggo/swag/testdata/conflict_name/model3"
+	_ "github.com/To-echo/swag/testdata/conflict_name/model"
+	_ "github.com/To-echo/swag/testdata/conflict_name/model3"
 )
 
 // @Tags Health

@@ -1,4 +1,4 @@
-module github.com/swaggo/swag
+module github.com/To-echo/swag
 
 require (
 	github.com/KyleBanks/depth v1.2.1
